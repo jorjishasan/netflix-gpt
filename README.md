@@ -15,6 +15,17 @@
 - Created a redux store using redux store with userSlice
 - Implemented Sign Out
 - Update Profile API
+- Fetch Movies from TMDB
+- BugFix: Sign Up user displayName and Profile Picture update issue
+- Unsubscribed from the onAuthChange callback
+- Register TMDB API and setup the 'now playing' movie list
+- Custom Hook for 'Now Playing Movies'
+- Create MovieSlice
+- Update Store with Movie Data
+- Planning for Main Container and Secondary Container
+- Fetch data for trailer Video
+- Update Store with Trailer video data
+- Embed yt video and make it autoplay with muted
 
 # Features
 

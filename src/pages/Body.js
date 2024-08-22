@@ -9,7 +9,7 @@ const Body = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         const { uid, email, displayName, photoURL } = user;
         dispatch(
@@ -21,13 +21,14 @@ const Body = () => {
           }),
         );
         navigate("/browse");
-        console.log(user);
       } else {
         // User is signed out
         dispatch(removeUser());
         navigate("/");
       }
     });
+
+    return () => unsubscribe();
   }, []);
 
   return <Outlet />;

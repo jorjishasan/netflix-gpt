@@ -19,7 +19,6 @@ const Login = () => {
   const dispatch = useDispatch();
   const handleButtonClick = () => {
     const message = checkValidData(email.current.value, password.current.value);
-    console.log(message);
     setErrorMessage(message);
 
     if (message) return;
@@ -35,7 +34,6 @@ const Login = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          console.log(user);
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -72,7 +70,6 @@ const Login = () => {
               // An error occurred
               // ...
             });
-          console.log(user);
           // ...
         })
         .catch((error) => {
@@ -87,7 +84,6 @@ const Login = () => {
 
   const toggleSignInForm = () => {
     setIsSignInForm(!isSignInForm);
-    console.log(isSignInForm);
   };
   return (
     <div className="h-[100vh]">

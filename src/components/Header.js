@@ -21,7 +21,6 @@ const Header = () => {
   return (
     <div className="absolute z-10 flex w-full items-center justify-between bg-gradient-to-b from-black">
       <img className="mx-auto w-44 md:mx-0" src={LOGO} alt="logo" />
-      {console.log(user)}
       {user ? (
         <div className="flex items-center justify-between gap-3">
           <img
