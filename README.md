@@ -32,6 +32,9 @@
 - TMDB image CDN
 - Made the image page looking good using tailwind
 - usePopularMovies custom hook
+- Gpt Search Page
+- Gpt Search Bar
+- Multi language support (lang config, langSlice)
 
 # Features
 
