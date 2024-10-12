@@ -1,12 +1,12 @@
 import React from "react";
 import { LOGO } from "../utils/constants";
 import { signOut } from "firebase/auth";
-import { auth } from "../utils/firebase";
+import { auth } from "../config/firebase";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleGptComponent } from "../utils/gptSlice";
-import lang from "../utils/languages";
-import { switchLanguage } from "../utils/langSlice";
+import { toggleGptComponent } from "../redux/gptSlice";
+import lang from "../config/languages";
+import { switchLanguage } from "../redux/langSlice";
 const Header = () => {
   const user = useSelector((store) => store.user);
   const showGptComponent = useSelector((store) => store.gpt.showGptComponent);

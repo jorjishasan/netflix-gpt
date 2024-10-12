@@ -1,44 +1,19 @@
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import { useSelector } from "react-redux";
-import nimClient from "../config/nimConfig";
+import useNimApi from "../hooks/useNimApi";
 import lang from "../config/languages";
 
 const NimSearchBar = () => {
   const currLanguage = useSelector((store) => store.lang.langSelected);
   const searchText = useRef(null);
-  const [result, setResult] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const { result, isLoading, error, fetchResponse } = useNimApi();
 
   const handleNimSearch = async (e) => {
     e.preventDefault();
     const userQuery = searchText.current.value;
     if (!userQuery.trim()) return;
 
-    setIsLoading(true);
-    setResult("");
-
-    try {
-      const completion = await nimClient.chat.completions.create({
-        model: "meta/llama-3.1-405b-instruct",
-        messages: [{ role: "user", content: userQuery }],
-        temperature: 0.2,
-        top_p: 0.7,
-        max_tokens: 1024,
-        stream: true,
-      });
-
-      let fullResult = "";
-      for await (const chunk of completion) {
-        const content = chunk.choices[0]?.delta?.content || "";
-        fullResult += content;
-        setResult((prevResult) => prevResult + content);
-      }
-    } catch (error) {
-      console.error("Error calling NVIDIA NIM API:", error);
-      setResult("An error occurred while processing your request.");
-    } finally {
-      setIsLoading(false);
-    }
+    await fetchResponse(userQuery);
   };
 
   return (
@@ -58,6 +33,11 @@ const NimSearchBar = () => {
           {isLoading ? "Searching..." : lang[currLanguage]?.search}
         </button>
       </form>
+      {error && (
+        <div className="mt-4 w-full max-w-2xl rounded-lg bg-red-100 p-4 text-red-700">
+          {error}
+        </div>
+      )}
       {result && (
         <div className="mt-8 w-full max-w-2xl rounded-lg bg-gray-100 p-4">
           <h2 className="mb-2 text-xl font-bold">Result:</h2>

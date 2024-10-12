@@ -3,7 +3,7 @@ import VideoTitle from "./VideoTitle";
 import VideoBackground from "./VideoBackground";
 
 const MainContainer = () => {
-  const movies = useSelector((store) => store.movies?.nowPlayingMovies);
+  const movies = useSelector((store) => store.movies.upcoming);
 
   // Check if movies is defined and not empty
   if (!movies || movies.length === 0) return null;

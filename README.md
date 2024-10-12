@@ -35,6 +35,9 @@
 - Gpt Search Page
 - Gpt Search Bar
 - Multi language support (lang config, langSlice)
+- Gpt Search Page
+- Gpt Search Bar
+- Multi language support (lang config, langSlice)
 
 # Features
 
