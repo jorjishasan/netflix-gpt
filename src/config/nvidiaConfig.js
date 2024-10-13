@@ -1,6 +1,6 @@
 const API_BASE_URL = "http://localhost:3001/api";
 
-const nimClient = {
+const nvidiaClient = {
   post: async (endpoint, data) => {
     const response = await fetch(`${API_BASE_URL}${endpoint}`, {
       method: "POST",
@@ -18,4 +18,4 @@ const nimClient = {
   },
 };
 
-export default nimClient;
+export default nvidiaClient;

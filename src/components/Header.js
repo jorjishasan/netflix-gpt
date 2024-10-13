@@ -4,12 +4,14 @@ import { signOut } from "firebase/auth";
 import { auth } from "../config/firebase";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleGptComponent } from "../redux/gptSlice";
+import { toggleAiSearchComponent } from "../redux/aiSearchSlice";
 import lang from "../config/languages";
 import { switchLanguage } from "../redux/langSlice";
 const Header = () => {
   const user = useSelector((store) => store.user);
-  const showGptComponent = useSelector((store) => store.gpt.showGptComponent);
+  const showAiSearchComponent = useSelector(
+    (store) => store.aiSearch.showAiSearchComponent,
+  );
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -24,8 +26,8 @@ const Header = () => {
       });
   };
 
-  const handleGptComponent = () => {
-    dispatch(toggleGptComponent());
+  const handleAiSearchComponent = () => {
+    dispatch(toggleAiSearchComponent());
   };
 
   const handleDropDown = (event) => {
@@ -36,7 +38,7 @@ const Header = () => {
       <img className="mx-auto w-44 md:mx-0" src={LOGO} alt="logo" />
       {user ? (
         <div className="flex items-center justify-between gap-3">
-          {showGptComponent && (
+          {showAiSearchComponent && (
             <select
               id="dropdown"
               name="options"
@@ -53,7 +55,7 @@ const Header = () => {
 
           <button
             className="rounded-xl bg-purple-800 px-4 py-2 text-lg text-white"
-            onClick={handleGptComponent}
+            onClick={handleAiSearchComponent}
           >
             GPT Search ✨
           </button>

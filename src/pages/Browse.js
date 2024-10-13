@@ -1,13 +1,19 @@
 import { useSelector } from "react-redux";
-import GptSearch from "../components/NimSearchBar";
+import AiSearch from "../components/AiSearch";
 import MainContainer from "../components/MainContainer";
 import SecondaryContainer from "../components/SecondaryContainer";
 import useMoviesByCategory from "../hooks/useMoviesByCategory";
+import MOVIE_CATEGORIES from "../config/movieCategory";
+
+const setMovieDataByCategoryToStore = () => {
+  MOVIE_CATEGORIES.forEach((category) => useMoviesByCategory(category));
+};
 
 const Browse = () => {
-  useMoviesByCategory("now_playing");
-  useMoviesByCategory("popular");
-  const showGptComponent = useSelector((store) => store.gpt.showGptComponent);
+  setMovieDataByCategoryToStore();
+  const showAiComponent = useSelector(
+    (store) => store.aiSearch.showAiSearchComponent,
+  );
 
   /* 
   Main Container
@@ -18,8 +24,8 @@ const Browse = () => {
       - cards * n
   
   */
-  return showGptComponent ? (
-    <GptSearch />
+  return showAiComponent ? (
+    <AiSearch />
   ) : (
     <>
       <MainContainer />
