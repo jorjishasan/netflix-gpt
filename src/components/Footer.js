@@ -33,33 +33,24 @@ const Footer = () => {
             </h4>
             <ul className="space-y-2 text-gray-500">
               <li>
-                <Link to="/" className="transition-colors hover:text-white">
+                <a href="#" className="transition-colors hover:text-white">
                   Home
-                </Link>
+                </a>
               </li>
               <li>
-                <Link
-                  to="/browse"
-                  className="transition-colors hover:text-white"
-                >
+                <a href="#" className="transition-colors hover:text-white">
                   Browse
-                </Link>
+                </a>
               </li>
               <li>
-                <Link
-                  to="/genres"
-                  className="transition-colors hover:text-white"
-                >
+                <a href="#" className="transition-colors hover:text-white">
                   Genres
-                </Link>
+                </a>
               </li>
               <li>
-                <Link
-                  to="/watchlist"
-                  className="transition-colors hover:text-white"
-                >
+                <a href="#" className="transition-colors hover:text-white">
                   My Watchlist
-                </Link>
+                </a>
               </li>
             </ul>
           </div>
@@ -69,28 +60,19 @@ const Footer = () => {
             </h4>
             <ul className="space-y-2 text-gray-500">
               <li>
-                <Link
-                  to="/contact"
-                  className="transition-colors hover:text-white"
-                >
+                <a href="#" className="transition-colors hover:text-white">
                   Contact Us
-                </Link>
+                </a>
               </li>
               <li>
-                <Link
-                  to="/terms-of-service"
-                  className="transition-colors hover:text-white"
-                >
+                <a href="#" className="transition-colors hover:text-white">
                   Terms of Service
-                </Link>
+                </a>
               </li>
               <li>
-                <Link
-                  to="/privacy-policy"
-                  className="transition-colors hover:text-white"
-                >
+                <a href="#" className="transition-colors hover:text-white">
                   Privacy Policy
-                </Link>
+                </a>
               </li>
             </ul>
           </div>
