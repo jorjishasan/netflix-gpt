@@ -86,9 +86,9 @@ const Login = () => {
     setIsSignInForm(!isSignInForm);
   };
   return (
-    <div className="h-[100vh]">
-      <div className="absolute">
-        <img className="min-h-full" alt="logo" src={BG_URL} />
+    <div>
+      <div className="absolute h-full w-full">
+        <img className="h-full w-full" alt="logo" src={BG_URL} />
       </div>
 
       <form
