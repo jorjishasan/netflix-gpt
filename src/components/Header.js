@@ -59,18 +59,20 @@ const Header = () => {
               </select>
             )}
 
-            <button
-              className="group flex items-center justify-center gap-1 rounded-lg bg-white px-2 py-1 text-xs font-medium text-gray-600 transition-colors hover:bg-gray-100 sm:gap-2 sm:px-3 sm:py-2 sm:text-sm md:px-4 md:py-2 md:text-base lg:px-5 lg:py-2.5"
-              onClick={handleAiSearchComponent}
-            >
-              <img
-                src={aiIcon}
-                alt=""
-                className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6"
-              />
-              <span className="xs:inline hidden">AI</span>
-              <span className="hidden sm:inline">Search</span>
-            </button>
+            {user && (
+              <button
+                className="group flex items-center justify-center gap-1 rounded-lg bg-white px-2 py-1 text-xs font-medium text-gray-600 transition-colors hover:bg-gray-100 sm:gap-2 sm:px-3 sm:py-2 sm:text-sm md:px-4 md:py-2 md:text-base lg:px-5 lg:py-2.5"
+                onClick={handleAiSearchComponent}
+              >
+                <img
+                  src={aiIcon}
+                  alt=""
+                  className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6"
+                />
+                <span className="xs:inline hidden">AI</span>
+                <span className="hidden sm:inline">Search</span>
+              </button>
+            )}
           </div>
 
           {user ? (
