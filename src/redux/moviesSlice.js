@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const moviesSlice = createSlice({
   name: "movies",
   initialState: {
-    trailer: {},
+    trailerMap: {},
   },
   reducers: {
     addMoviesByCategory: (state, action) => {
@@ -11,7 +11,8 @@ const moviesSlice = createSlice({
       state[category] = movies;
     },
     addTrailer: (state, action) => {
-      state.trailer = action.payload;
+      const { movieId, trailer } = action.payload;
+      state.trailerMap[movieId] = trailer;
     },
   },
 });
