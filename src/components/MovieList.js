@@ -1,50 +1,59 @@
-import { useRef, useEffect, useState } from "react";
+import React, { useRef, useState } from "react";
 import MovieCard from "./MovieCard";
+import useScrollProgress from "../hooks/useScrollProgress";
+import useHoverCoordinates from "../hooks/useHoverCoordinates";
+import PopupMovieDetails from "./PopupMovieDetails";
 
 const MovieList = ({ title, movies }) => {
   const scrollContainerRef = useRef(null);
-  const [scrollProgress, setScrollProgress] = useState(0);
+  const scrollProgress = useScrollProgress(scrollContainerRef);
+  const [hoverX, handleMouseEnter, handleMouseLeave] = useHoverCoordinates();
+  const [hoveredMovie, setHoveredMovie] = useState(null);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const container = scrollContainerRef.current;
-      const scrollWidth = container.scrollWidth - container.clientWidth;
-      const scrolled = container.scrollLeft;
-      setScrollProgress((scrolled / scrollWidth) * 100);
-    };
+  const handleCardHover = (event, movie) => {
+    handleMouseEnter(event);
+    setHoveredMovie(movie);
+  };
 
-    const container = scrollContainerRef.current;
-    container.addEventListener("scroll", handleScroll);
-    return () => container.removeEventListener("scroll", handleScroll);
-  }, []);
+  const handleCardLeave = () => {
+    handleMouseLeave();
+    setHoveredMovie(null);
+  };
 
   return (
-    <div className="px-6 text-white">
+    <div className="relative px-6 text-white">
       <h1 className="py-4 text-lg md:text-3xl">{title}</h1>
-      <div
-        ref={scrollContainerRef}
-        className="scrollbar-hide flex overflow-x-scroll"
-        style={{
-          scrollbarWidth: "none",
-          msOverflowStyle: "none",
-        }}
-      >
-        <div className="flex gap-4 pb-4">
-          {movies && movies.length > 0 ? (
-            movies.map((movie) => <MovieCard key={movie.id} movie={movie} />)
-          ) : (
-            <p>No movies available</p>
-          )}
+      <div className="relative">
+        <div
+          className="scrollbar-hide overflow-x-scroll"
+          ref={scrollContainerRef}
+        >
+          <div className="flex gap-4 pb-4">
+            {movies && movies.length > 0 ? (
+              movies.map((movie) => (
+                <div
+                  key={movie.id}
+                  onMouseEnter={(e) => handleCardHover(e, movie)}
+                  onMouseLeave={handleCardLeave}
+                >
+                  <MovieCard movie={movie} />
+                </div>
+              ))
+            ) : (
+              <p>No movies available</p>
+            )}
+          </div>
         </div>
-      </div>
-      <div className="mt-2 flex justify-center">
-        <div className="relative h-1 w-full max-w-[200px] overflow-hidden rounded-full bg-gray-700">
+        <div className="absolute bottom-0 left-1/2 h-1.5 w-[100px] -translate-x-1/2 bg-gray-300">
           <div
-            className="absolute h-full bg-red-600 transition-all duration-300 ease-out"
+            className="absolute left-0 h-full bg-red-600 transition-all duration-300 ease-out"
             style={{ width: `${scrollProgress}%` }}
           ></div>
         </div>
       </div>
+      {hoveredMovie && hoverX !== null && (
+        <PopupMovieDetails movie={hoveredMovie} x={hoverX} />
+      )}
     </div>
   );
 };
