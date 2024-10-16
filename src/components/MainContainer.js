@@ -5,21 +5,20 @@ import VideoBackground from "./VideoBackground";
 const MainContainer = () => {
   const movies = useSelector((store) => store.movies.upcoming);
 
-  // Check if movies is defined and not empty
   if (!movies || movies.length === 0) return null;
 
   const mainMovie = movies[0];
 
-  // Check if mainMovie is defined
   if (!mainMovie) return null;
 
   const { original_title, overview, id } = mainMovie;
 
   return (
-    <div className="relative bg-black pt-[30%] md:pt-0">
-      <VideoTitle title={original_title} description={overview} />
+    <div className="relative w-full overflow-hidden bg-black">
       <VideoBackground movieId={id} />
+      <VideoTitle title={original_title} description={overview} />
     </div>
   );
 };
+
 export default MainContainer;

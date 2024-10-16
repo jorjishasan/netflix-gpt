@@ -2,17 +2,24 @@ import React from "react";
 
 const VideoTitle = ({ title, description }) => {
   return (
-    <div className="absolute left-0 top-0 aspect-video w-screen bg-gradient-to-r from-black px-24 pt-[15%] text-white">
-      <h1 className="text-4xl font-bold">{title}</h1>
-      <p className="w-1/2 py-6 text-lg">{description}</p>
-
-      <div className="text-white">
-        <button className="mr-3 rounded-md bg-red-600 px-10 py-3 font-semibold">
-          ▶️ Play
-        </button>
-        <button className="rounded-md bg-gray-800/80 px-10 py-3 font-semibold">
-          More Info
-        </button>
+    <div className="absolute inset-0 bg-gradient-to-r from-black via-black/60 to-transparent">
+      <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="mt-[10%] max-w-xl text-white">
+          <h1 className="text-2xl font-bold sm:text-3xl md:text-4xl lg:text-5xl">
+            {title}
+          </h1>
+          <p className="mt-4 max-w-md text-sm sm:text-base md:text-lg">
+            {description}
+          </p>
+          <div className="mt-6 flex flex-wrap gap-4">
+            <button className="rounded-md bg-red-600 px-4 py-2 font-semibold text-white transition hover:bg-red-700">
+              ▶️ Play
+            </button>
+            <button className="rounded-md bg-gray-800/80 px-4 py-2 font-semibold text-white transition hover:bg-gray-700/80">
+              More Info
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

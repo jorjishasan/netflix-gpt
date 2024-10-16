@@ -9,7 +9,7 @@ const SecondaryContainer = () => {
   return (
     movies && (
       <div className="bg-black">
-        <div className="relative z-40 -mt-40 pl-10">
+        <div className="relative -mt-40 pl-10">
           {MOVIE_CATEGORIES.map((category) => (
             <MovieList
               key={category}
