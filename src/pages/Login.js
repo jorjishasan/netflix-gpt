@@ -88,14 +88,14 @@ const Login = () => {
   return (
     <div>
       <div className="absolute h-full w-full">
-        <img className="h-full w-full" alt="logo" src={BG_URL} />
+        <img className="h-full w-full object-cover" alt="logo" src={BG_URL} />
       </div>
 
       <form
         onSubmit={(e) => e.preventDefault()}
-        className="absolute left-0 right-0 mx-auto my-36 w-1/2 bg-black bg-opacity-70 p-12 text-white"
+        className="absolute left-0 right-0 mx-auto my-8 w-full max-w-md rounded-lg bg-black bg-opacity-80 p-8 shadow-lg sm:my-16 md:my-24 lg:my-36"
       >
-        <h1 className="py-4 text-3xl">
+        <h1 className="mb-6 text-2xl font-bold text-white sm:text-3xl">
           {isSignInForm ? "Sign In" : "Sign Up"}
         </h1>
         {!isSignInForm && (
@@ -103,32 +103,36 @@ const Login = () => {
             ref={name}
             type="text"
             placeholder="Full Name"
-            className="my-4 w-full bg-gray-700 p-4"
+            className="mb-4 w-full rounded bg-gray-700 p-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-500"
           />
         )}
         <input
           type="text"
           ref={email}
           placeholder="Email Address"
-          className="my-4 w-full bg-gray-700 p-4"
+          className="mb-4 w-full rounded bg-gray-700 p-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-500"
         />
         <input
           type="password"
           ref={password}
           placeholder="Password"
-          className="my-4 w-full bg-gray-700 p-4"
+          className="mb-4 w-full rounded bg-gray-700 p-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-500"
         />
-        <p className="font-bold text-red-500">{errorMessage}</p>
+        <p className="mb-4 text-sm font-bold text-red-500">{errorMessage}</p>
         <button
-          className="my-4 w-full rounded bg-red-700 p-4"
+          className="mb-4 w-full rounded bg-red-600 p-3 font-bold text-white transition-colors hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500"
           onClick={handleButtonClick}
         >
           {isSignInForm ? "Sign In" : "Sign Up"}
         </button>
-        <p className="cursor-pointer" onClick={toggleSignInForm}>
-          {isSignInForm
-            ? "New to Netflix ? Sign Up Now"
-            : "Already register ? Sign In Now"}
+        <p className="text-sm text-gray-300">
+          {isSignInForm ? "New to Netflix? " : "Already registered? "}
+          <span
+            className="cursor-pointer font-bold text-white hover:underline"
+            onClick={toggleSignInForm}
+          >
+            {isSignInForm ? "Sign Up Now" : "Sign In Now"}
+          </span>
         </p>
       </form>
     </div>
